@@ -32,4 +32,10 @@ public class BoardTest {
         verify(printStream, times(2)).println("-----");
     }
 
+    @Test
+    public void shouldAddXAtDesignatedLocation(){
+        board.addXToPosition("1");
+        verify(printStream).println(contains("X"));
+    }
+
 }
