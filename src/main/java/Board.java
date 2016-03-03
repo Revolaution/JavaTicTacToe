@@ -1,4 +1,6 @@
 
+import com.sun.corba.se.impl.presentation.rmi.ExceptionHandler;
+
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +24,20 @@ public class Board {
         }
     }
 
+    public void addMovePieceToPosition(String userInput, String movePiece) {
+        int playerSelection = Integer.parseInt(userInput) - 1;
+        if (wholeBoard.get(playerSelection) == "X" || wholeBoard.get(playerSelection) == "O"){
+            printStream.println("Invalid option. Please Choose Another Option");
+        }
+        else {
+            wholeBoard.set(playerSelection, movePiece);
+        }
+        this.show();
+    }
+
     private void addPlacesToWholeBoard(){
         for(int i = 0; i < 9; i ++){
             wholeBoard.add(String.format("%d", i + 1));
         }
-    }
-
-    public void addXToPosition(String userInput) {
-        wholeBoard.set((Integer.parseInt(userInput) - 1), "X");
     }
 }

@@ -34,8 +34,15 @@ public class BoardTest {
 
     @Test
     public void shouldAddXAtDesignatedLocation(){
-        board.addXToPosition("1");
+        board.addMovePieceToPosition("1", "X");
         verify(printStream).println(contains("X"));
+    }
+
+    @Test
+    public void shouldTellUserIfTheyMadeAnInvalidOption(){
+//        when(board.get(1)).thenReturn("X");
+        board.addMovePieceToPosition("1", "X");
+        verify(printStream).println(contains("Invalid"));
     }
 
 }
