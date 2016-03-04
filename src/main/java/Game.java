@@ -20,8 +20,6 @@ public class Game {
     }
 
     public void play() {
-        System.out.println("THIS IS THE COUNTER");
-        System.out.println(counter);
         if (this.counter % 2 == 0){
             this.retrievePositionFrom(player1);
         }
@@ -29,11 +27,13 @@ public class Game {
             this.retrievePositionFrom(player2);
         }
         counter ++;
+        endGame();
     }
 
     public int getCounter(){
         return counter;
     }
+
 
     public void retrievePositionFrom(Player player) {
         printStream.println(String.format("%s, Please Enter a Number for where you'd like to place your piece", player.getName()));
@@ -53,6 +53,12 @@ public class Game {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void endGame() {
+        if (counter == 9){
+            printStream.println("It's a draw!");
         }
     }
 }

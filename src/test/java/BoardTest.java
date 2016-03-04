@@ -47,11 +47,4 @@ public class BoardTest {
         verify(printStream).println(contains("O"));
     }
 
-    @Test
-    public void shouldTellUserIfTheyMadeAnInvalidOption() throws IOException {
-        when(board.positionIsOpenAt(1)).thenReturn(false);
-        board.addMovePieceToPosition("X",1);
-        verify(printStream).println(contains("Invalid"));
-    }
-
 }
