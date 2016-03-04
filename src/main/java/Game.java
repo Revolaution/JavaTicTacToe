@@ -20,6 +20,8 @@ public class Game {
     }
 
     public void play() {
+        System.out.println("THIS IS THE COUNTER");
+        System.out.println(counter);
         if (this.counter % 2 == 0){
             this.retrievePositionFrom(player1);
         }
@@ -40,7 +42,13 @@ public class Game {
             do {
                 String userInput = bufferedReader.readLine();
                 playerSelection = Integer.parseInt(userInput) - 1;
+                if (!board.positionIsOpenAt(playerSelection)){
+                    counter --;
+                    printStream.println("Invalid choice. Try again");
+                    break;
+                }
                 board.addMovePieceToPosition(player.getMovePiece(),playerSelection );
+
             } while(board.positionIsOpenAt(playerSelection));
 
         } catch (IOException e) {
