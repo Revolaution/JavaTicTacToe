@@ -63,7 +63,6 @@ public class GameTest {
 
     @Test
     public void shouldReturnDrawMessageWhenAllPositionsAreTaken(){
-        
         game.endGame();
         verify(printStream).println(contains("draw"));
     }

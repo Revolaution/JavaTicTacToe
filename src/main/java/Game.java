@@ -20,13 +20,15 @@ public class Game {
     }
 
     public void play() {
-        if (this.counter % 2 == 0){
-            this.retrievePositionFrom(player1);
+        while (counter != 9){
+            if (this.counter % 2 == 0){
+                this.retrievePositionFrom(player1);
+            }
+            else{
+                this.retrievePositionFrom(player2);
+            }
+            counter ++;
         }
-        else{
-            this.retrievePositionFrom(player2);
-        }
-        counter ++;
         endGame();
     }
 
@@ -57,8 +59,6 @@ public class Game {
     }
 
     public void endGame() {
-        if (counter == 9){
-            printStream.println("It's a draw!");
-        }
+        printStream.println("It's a draw!");
     }
 }

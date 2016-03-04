@@ -13,8 +13,6 @@ public class Main {
         Game game = new Game(board, printStream, bufferedReader, player1, player2);
 
         board.show();
-        while (game.getCounter() != 9){
-            game.play();
-        }
+        game.play();
     }
 }
