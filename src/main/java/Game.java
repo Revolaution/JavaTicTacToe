@@ -41,7 +41,8 @@ public class Game {
                 String userInput = bufferedReader.readLine();
                 playerSelection = Integer.parseInt(userInput) - 1;
                 board.addMovePieceToPosition(player.getMovePiece(),playerSelection );
-            } while( board.positionIsOpenAt(playerSelection) );
+            } while(board.positionIsOpenAt(playerSelection));
+
         } catch (IOException e) {
             e.printStackTrace();
         }

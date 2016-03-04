@@ -42,6 +42,12 @@ public class BoardTest {
     }
 
     @Test
+    public void shouldAddOAtDesignatedLocation() throws IOException {
+        board.addMovePieceToPosition("O",1);
+        verify(printStream).println(contains("O"));
+    }
+
+    @Test
     public void shouldTellUserIfTheyMadeAnInvalidOption() throws IOException {
         when(board.positionIsOpenAt(1)).thenReturn(true);
         board.addMovePieceToPosition("X",1);

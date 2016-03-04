@@ -43,7 +43,7 @@ public class GameTest {
     public void shouldInvokeBoardChangeMethodAfterUserInput() throws IOException {
         when(bufferedReader.readLine()).thenReturn("1");
         game.retrievePositionFrom(player1);
-        verify(board).addMovePieceToPosition(player1.getMovePiece(),1);
+        verify(board).addMovePieceToPosition(player1.getMovePiece(),0);
     }
 
     @Test
