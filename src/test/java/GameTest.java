@@ -53,4 +53,12 @@ public class GameTest {
         verify(board).addMovePieceToPosition(player2.getMovePiece(), 1);
     }
 
+    @Test
+    public void shouldReturnInvalidChoiceWhenGivenAnAlreadyTakenSpot() throws IOException {
+        when(bufferedReader.readLine()).thenReturn("2");
+        when(board.positionIsOpenAt(2)).thenReturn(false);
+        game.retrievePositionFrom(player1);
+        verify(printStream).println(contains("Invalid"));
+    }
+
 }
