@@ -33,7 +33,8 @@ public class GameTest {
     }
 
     @Test
-    public void shouldAskPlayerForPlaceToPutX(){
+    public void shouldAskPlayerForPlaceToPutX() throws IOException {
+        when(bufferedReader.readLine()).thenReturn("2");
         game.retrievePositionFrom(player1);
         verify(printStream).println(contains("Enter a Number"));
     }
@@ -42,14 +43,14 @@ public class GameTest {
     public void shouldInvokeBoardChangeMethodAfterUserInput() throws IOException {
         when(bufferedReader.readLine()).thenReturn("1");
         game.retrievePositionFrom(player1);
-        verify(board).addMovePieceToPosition("1", player1.getMovePiece());
+        verify(board).addMovePieceToPosition(player1.getMovePiece(),1);
     }
 
     @Test
     public void shouldInvokeBoardChangeMethodForPlayer2() throws IOException {
         when(bufferedReader.readLine()).thenReturn("2");
         game.retrievePositionFrom(player2);
-        verify(board).addMovePieceToPosition("2",player2.getMovePiece());
+        verify(board).addMovePieceToPosition(player2.getMovePiece(), 1);
     }
 
 }

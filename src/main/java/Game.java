@@ -36,8 +36,12 @@ public class Game {
     public void retrievePositionFrom(Player player) {
         printStream.println(String.format("%s, Please Enter a Number for where you'd like to place your piece", player.getName()));
         try {
-            String input = bufferedReader.readLine();
-            board.addMovePieceToPosition(input, player.getMovePiece());
+            int playerSelection;
+            do {
+                String userInput = bufferedReader.readLine();
+                playerSelection = Integer.parseInt(userInput) - 1;
+                board.addMovePieceToPosition(player.getMovePiece(),playerSelection );
+            } while( board.positionIsOpenAt(playerSelection) );
         } catch (IOException e) {
             e.printStackTrace();
         }

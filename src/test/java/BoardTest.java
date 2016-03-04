@@ -1,23 +1,26 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintStream;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 import static org.mockito.Matchers.contains;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 public class BoardTest {
 
     private PrintStream printStream;
     private Board board;
+    private BufferedReader bufferedReader;
 
     @Before
     public void setUp() throws Exception {
         printStream = mock(PrintStream.class);
-        board = new Board(printStream);
+        bufferedReader = mock(BufferedReader.class);
+        board = new Board(printStream, bufferedReader);
     }
 
     @Test
@@ -33,15 +36,15 @@ public class BoardTest {
     }
 
     @Test
-    public void shouldAddXAtDesignatedLocation(){
-        board.addMovePieceToPosition("1", "X");
+    public void shouldAddXAtDesignatedLocation() throws IOException {
+        board.addMovePieceToPosition("X",1);
         verify(printStream).println(contains("X"));
     }
 
     @Test
-    public void shouldTellUserIfTheyMadeAnInvalidOption(){
-//        when(board.get(1)).thenReturn("X");
-        board.addMovePieceToPosition("1", "X");
+    public void shouldTellUserIfTheyMadeAnInvalidOption() throws IOException {
+        when(board.positionIsOpenAt(1)).thenReturn(true);
+        board.addMovePieceToPosition("X",1);
         verify(printStream).println(contains("Invalid"));
     }
 

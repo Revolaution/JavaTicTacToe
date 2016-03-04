@@ -1,6 +1,5 @@
-
-import com.sun.corba.se.impl.presentation.rmi.ExceptionHandler;
-
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +7,11 @@ import java.util.List;
 public class Board {
     private List<String> wholeBoard;
     private PrintStream printStream;
+    private BufferedReader bufferedReader;
 
-    public Board(PrintStream printStream) {
+    public Board(PrintStream printStream, BufferedReader bufferedReader) {
         this.printStream = printStream;
+        this.bufferedReader = bufferedReader;
         this.wholeBoard = new ArrayList<>();
         this.addPlacesToWholeBoard();
     }
@@ -24,15 +25,13 @@ public class Board {
         }
     }
 
-    public void addMovePieceToPosition(String userInput, String movePiece) {
-        int playerSelection = Integer.parseInt(userInput) - 1;
-        if (wholeBoard.get(playerSelection) == "X" || wholeBoard.get(playerSelection) == "O"){
-            printStream.println("Invalid option. Please Choose Another Option");
-        }
-        else {
-            wholeBoard.set(playerSelection, movePiece);
-        }
+    public void addMovePieceToPosition(String movePiece, Integer userInput) throws IOException {
+        wholeBoard.set(userInput, movePiece);
         this.show();
+    }
+
+    public boolean positionIsOpenAt(int position){
+        return wholeBoard.get(position) != "X" && (wholeBoard.get(position) != "O");
     }
 
     private void addPlacesToWholeBoard(){
